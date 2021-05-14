@@ -1,2 +1,2 @@
 # dan-sings-bot
-A Discord Sings practic bot for Mr Dan
+A Discord Sings practice bot for Mr Dan

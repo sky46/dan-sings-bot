@@ -2,7 +2,9 @@
   "songs": [
     {
       "title": "Chug Jug With You",
+      "artist": "LeviathanJPTV",
       "id": 1,
+      "url": "https://www.youtube.com/watch?v=Z0Uh3OJCx3o",
       "lyrics": [
         "We got a number one victory royale",
         "Yeah, Fortnite, we 'bout to get down (Get down)",
@@ -72,7 +74,9 @@
     },
     {
       "title": "Never Gonna Give You Up",
+      "artist": "Rick Astley",
       "id": 2,
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       "lyrics": [
         "We're no strangers to love",
         "You know the rules and so do I",

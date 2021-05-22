@@ -1,5 +1,6 @@
 # Discord Sings practice bot for Mr Dan's Sings server
 # aka jego lohnathan
+# by skytheguy#3630
 
 import discord
 from discord.ext import commands
@@ -13,18 +14,17 @@ import typing
 import re
 
 load_dotenv()
-# currently test bot in my server
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
+env_var = os.environ
+BOT_TOKEN = env_var.get("BOT_TOKEN") # currently test bot in my server
+ALLOWED_ROLE_ID = env_var.get("ALLOWED_ROLE") # currently test role in server, should be role that is given to people allowed to start the bot
 intents = discord.Intents(messages=True, guilds=True, members=True, reactions=True)
 bot = commands.Bot(command_prefix='-', intents=intents)
 
-# Remember to change this as songs are added
-SONGS_COUNT = 2
+with open("songs.json", 'r') as read_file:
+    SONGS_COUNT = len(json.load(read_file)['songs'])
 
-# currently test role in server, should be role that is given to people allowed to start the bot
-ALLOWED_ROLE_ID = 843875380553449524
-bot.started = False
 bot.song_id = 0
+bot.started = False
 bot.songs_data = {}
 bot.next_line = None
 
@@ -56,7 +56,8 @@ async def on_ready():
     global SINGS_CHANNEL
     global MISTAKES_CHANNEL
     SINGS_CHANNEL = bot.get_channel(843875804588933141)
-    MISTAKES_CHANNEL = bot.get_channel(844695429035327488)
+    MISTAKES_CHANNEL = bot.get_channel(env_var.get("MISTAKES_CHANNEL"))
+    LYRICS_CHANNEL = bot.get_channel(env_var.get("LYRICS_CHANNEL"))
     print("We have logged in as jego lohnathan")
 
 @bot.command()
@@ -78,7 +79,7 @@ async def start(ctx, song: typing.Optional[int]):
     # this stuff is for testing
     # subtract 1 because 0-indexing; maybe change id's to 0-indexed too?
     song_title = bot.song_data['title']
-    await ctx.send(f"**Now starting practice sings! Song: {song_title}**")
+    await ctx.send(f"**Now starting practice sings! Song: {song_title}, by **")
     lyrics_str = '\n'.join(bot.song_data['lyrics'])
     await ctx.send(f"__Lyrics__:\n{lyrics_str}")
     

@@ -14,15 +14,14 @@ import typing
 import re
 
 load_dotenv()
-env_var = os.environ
-BOT_TOKEN = env_var.get("BOT_TOKEN") # currently test bot in my server
-ALLOWED_ROLE_ID = env_var.get("ALLOWED_ROLE") # currently test role in server, should be role that is given to people allowed to start the bot
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 intents = discord.Intents(messages=True, guilds=True, members=True, reactions=True)
 bot = commands.Bot(command_prefix='-', intents=intents)
 
 with open("songs.json", 'r') as read_file:
     SONGS_COUNT = len(json.load(read_file)['songs'])
 
+bot.ALLOWED_ROLE_ID = int(os.environ.get("ALLOWED_ROLE"))
 bot.song_id = 0
 bot.started = False
 bot.songs_data = {}
@@ -53,19 +52,16 @@ RE_CUSTOM_EMOJI = r"<:\w+:\d+>"
 @bot.event
 async def on_ready():
     # currently test channels in server
-    global SINGS_CHANNEL
-    global MISTAKES_CHANNEL
-    SINGS_CHANNEL = bot.get_channel(843875804588933141)
-    MISTAKES_CHANNEL = bot.get_channel(env_var.get("MISTAKES_CHANNEL"))
-    LYRICS_CHANNEL = bot.get_channel(env_var.get("LYRICS_CHANNEL"))
+    bot.SINGS_CHANNEL = bot.get_channel(int(os.environ.get("SINGS_CHANNEL")))
+    bot.MISTAKES_CHANNEL = bot.get_channel(int(os.environ.get("MISTAKES_CHANNEL")))
+    bot.LYRICS_CHANNEL = bot.get_channel(int(os.environ.get("LYRICS_CHANNEL")))
     print("We have logged in as jego lohnathan")
 
 @bot.command()
 async def start(ctx, song: typing.Optional[int]):
-    if ctx.message.author not in ctx.guild.get_role(ALLOWED_ROLE_ID).members:
+    if ctx.message.author not in ctx.guild.get_role(bot.ALLOWED_ROLE_ID).members:
         return await ctx.send("Sorry, but you don't have permission to start a practice sings.")
-        # alternatively just return without any message
-        # return
+
     if song not in range(1, SONGS_COUNT + 1):
         song_id = random.randint(1, SONGS_COUNT)
         if song != None:
@@ -76,12 +72,18 @@ async def start(ctx, song: typing.Optional[int]):
         # subtract 1 because 0-indexing; maybe change id's to 0-indexed too?
         bot.song_data = json.load(read_file)['songs'][song_id - 1]
 
-    # this stuff is for testing
-    # subtract 1 because 0-indexing; maybe change id's to 0-indexed too?
     song_title = bot.song_data['title']
-    await ctx.send(f"**Now starting practice sings! Song: {song_title}, by **")
+    song_artist = bot.song_data['artist']
     lyrics_str = '\n'.join(bot.song_data['lyrics'])
-    await ctx.send(f"__Lyrics__:\n{lyrics_str}")
+
+    lyrics_embed = discord.Embed(title="__Practice sings started!__", colour=0xc961dd)
+    lyrics_embed.add_field(name=song_title, value=f"By {song_artist}")
+    info_embed = discord.Embed(title=f"__Now starting practice sings!__", colour=0xc961dd)
+    info_embed.add_field(name=song_title, value=f"By {song_artist}")
+
+    await ctx.send(embed=info_embed)
+    await bot.LYRICS_CHANNEL.send(embed=lyrics_embed)
+    await bot.LYRICS_CHANNEL.send(f"Lyrics:\n{lyrics_str}")
     
     bot.started = True
 
@@ -89,11 +91,11 @@ async def start(ctx, song: typing.Optional[int]):
 async def on_message(message):
     if message.author == bot.user:
         return
-    if message.channel != SINGS_CHANNEL:
+    if message.channel != bot.SINGS_CHANNEL:
         return
 
     if bot.started and not (message.content.startswith('-') and message.author in
-            message.guild.get_role(ALLOWED_ROLE_ID).members):
+            message.guild.get_role(bot.ALLOWED_ROLE_ID).members):
 
         if not bot.next_line:
             bot.next_line = 1
@@ -108,7 +110,7 @@ async def on_message(message):
             
             # Allow emoji-only messages
             if not inputted_line:
-                return await MISTAKES_CHANNEL.send("not a mistake but emoji-only message detected")
+                return await bot.MISTAKES_CHANNEL.send("not a mistake but emoji-only message detected")
 
             # Allow minor errors or differences (80% similarity required) and delete incorrect messages
             if ratio(inputted_line, current_line) >= 0.8:
@@ -119,10 +121,12 @@ async def on_message(message):
                 return
             else:
                 await message.delete()
-                return await MISTAKES_CHANNEL.send(f"mistake: {message.author} said '{message.content}'")
+                mistake_embed = discord.Embed(colour=0xbd1800)
+                mistake_embed.add_field(name="Mistake", value=f"{message.author} said '{message.content}'")
+                return await bot.MISTAKES_CHANNEL.send(embed=mistake_embed)
             
         except IndexError:
-            await SINGS_CHANNEL.send("Song completed!")
+            await bot.SINGS_CHANNEL.send("Song completed!")
             bot.started = False
 
     else:

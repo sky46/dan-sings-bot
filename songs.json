@@ -14,15 +14,15 @@
         "I revived him, now we're heading south-bound",
         "Now we're in the Pleasant Park streets",
         "Look at the map, go to the marked sheet",
-        
-        "\n",
+
+        "",
 
         "Take me to your Xbox to play Fortnite today",
         "You can take me to Moisty Mire, but not Loot Lake",
         "I really love to chug jug with you",
         "We can be pro Fortnite gamers",
-        
-        "\n",
+
+        "",
 
         "He said",
         "Hey broski, you got some heals and a shield pot?",
@@ -34,22 +34,22 @@
         "I've got V-Bucks that I'll spend",
         "More than you can contend",
         "I'm a cool pro Fortnite gamer (Cool pro Fortnite-)",
-        
-        "\n",
+
+        "",
 
         "Take me to your Xbox to play Fortnite today",
         "You can take me to Moisty Mire, but not Loot Lake",
         "I really love to chug jug with you",
         "We can be pro Fortnite gamers",
-        
-        "\n",
+
+        "",
 
         "La-la-la-la-la-e-ya",
         "La-la-la-la-la-e-ya",
         "La-la-la-la-la-e-ya",
         "Will you be my pro Fortnite gamer? (Pro Fortnite gamer)",
-        
-        "\n",
+
+        "",
 
         "Can we get a win this weekend?",
         "Take me to Loot Lake",
@@ -63,8 +63,8 @@
         "I turn back and I attack",
         "I just got a victory royale",
         "A victory royale",
-        
-        "\n",
+
+        "",
 
         "Take me to your Xbox to play Fortnite today",
         "You can take me to Moisty Mire, but not Loot Lake",
@@ -82,8 +82,8 @@
         "You know the rules and so do I",
         "A full commitment's what I'm thinking of",
         "You wouldn't get this from any other guy",
-        
-        "\n",
+
+        "",
 
         "I just wanna tell you how I'm feeling",
         "Gotta make you understand",
@@ -93,20 +93,20 @@
         "Never gonna make you cry",
         "Never gonna say goodbye",
         "Never gonna tell a lie and hurt you",
-        
-        "\n",
+
+        "",
 
         "We've known each other for so long",
         "Your heart's been aching but you're too shy to say it",
         "Inside we both know what's been going on",
         "We know the game and we're gonna play it",
-        
-        "\n",
+
+        "",
 
         "And if you ask me how I'm feeling",
         "Don't tell me you're too blind to see",
-        
-        "\n",
+
+        "",
 
         "Never gonna give you up",
         "Never gonna let you down",
@@ -120,27 +120,27 @@
         "Never gonna make you cry",
         "Never gonna say goodbye",
         "Never gonna tell a lie and hurt you",
-        
-        "\n",
+
+        "",
 
         "(Ooh give you up)",
         "(Ooh give you up)",
         "(Ooh) Never gonna give, never gonna give (give you up)",
         "(Ooh) Never gonna give, never gonna give (give you up)",
-        
-        "\n",
+
+        "",
 
         "We've known each other for so long",
         "Your heart's been aching but you're too shy to say it",
         "Inside we both know what's been going on",
         "We know the game and we're gonna play it",
-        
-        "\n",
+
+        "",
 
         "I just wanna tell you how I'm feeling",
         "Gotta make you understand",
-        
-        "\n",
+
+        "",
 
         "Never gonna give you up",
         "Never gonna let you down",
@@ -160,6 +160,1184 @@
         "Never gonna make you cry",
         "Never gonna say goodbye",
         "Never gonna tell a lie and hurt you"
+      ]
+    },
+
+    {
+      "title": "The Duck Song",
+      "artist": "Bryant Oden",
+      "id": 3,
+      "url": "https://www.youtube.com/watch?v=MtN1YnoL46Q",
+      "lyrics": [
+        "A duck walked up to a lemonade stand",
+        "And he said to the man, running the stand",
+        "\"Hey! (Bum bum bum) Got any grapes?\"",
+        "The man said",
+        "\"No we just sell lemonade. But it's cold",
+        "And it's fresh",
+        "And it's all home-made. Can I get you a glass?",
+        "The duck said,",
+        "\"I'll pass\".",
+
+        "",
+
+        "Then he waddled away.",
+        "(Waddle waddle)",
+        "'Til the very next day.",
+        "(Bum bum bum bum ba-bada-dum)",
+
+        "",
+
+        "When the duck walked up to the lemonade stand",
+        "And he said to the man running the stand,",
+        "\"Hey! (Bum bum bum) Got any grapes?",
+        "The man said,",
+        "\"No, like I said yesterday",
+        "We just sell lemonade OK?",
+        "Why not give it a try?\"",
+        "The duck said,",
+        "\"Goodbye.\"",
+
+        "",
+
+        "Then he waddled away.",
+        "(Waddle waddle)",
+        "Then he waddled away.",
+        "(Waddle waddle)",
+        "Then he waddled away",
+        "(Waddle waddle)",
+        "'Til the very next day.",
+        "(Bum bum bum bum ba-ba-dum)",
+
+        "",
+
+        "When the duck walked up to the lemonade stand",
+        "And he said to the man running the stand,",
+        "\"Hey! (bum bum bum) Got any grapes?",
+        "The man said,",
+        "Look, this is getting old.",
+        "I mean, lemonade's all we've ever sold.",
+        "Why not give it a go?\"",
+        "The duck said,",
+        "\"How 'bout, no.\"",
+
+        "",
+
+        "Then he waddled away",
+        "(Waddle waddle)",
+        "Then he waddled away.",
+        "(Waddle waddle waddle)",
+        "Then he waddled away",
+        "(Waddle waddle)",
+        "'Til the very next day.",
+        "(Bum bum bum bum ba-ba-dum)",
+
+        "",
+
+        "When the duck walked up to the lemonade stand",
+        "And he said to the man running the stand,",
+        "\"Hey! (Bum bum bum) Got any grapes?\"",
+        "The man said,",
+        "\"THAT'S IT!",
+        "If you don't stay away, duck,",
+        "I'll glue you to a tree and leave you there all day, stuck",
+        "So don't get to close!\"",
+        "The duck said,",
+        "\"Adios.\"",
+
+        "",
+
+        "Then he waddled away.",
+        "(Waddle waddle)",
+        "Then he waddled away.",
+        "(Waddle waddle waddle)",
+        "Then he waddled away",
+        "(Waddle waddle)",
+        "'Til the very next day.",
+        "(Bum bum bum bum ba-ba-dum)",
+
+        "",
+
+        "When the duck walked up to the lemonade stand",
+        "And he said to the man that was running the stand,",
+        "\"Hey! (Bum bum bum) got any glue?\"",
+        "\"What\"",
+        "\"Got any glue?\"",
+        "\"No, why would I- oh!\"",
+        "And one more question for you;",
+        "\"Got any grapes?\"",
+        "(Bum bum bum, bum bum bum)",
+
+        "",
+
+        "And the man just stopped.",
+        "Then he started to smile.",
+        "He started to laugh.",
+        "He laughed for a while.",
+        "He said,",
+        "\"Come on duck, let's walk to the store.",
+        "I'll buy you some grapes",
+        "So you won't have to ask anymore.\"",
+        "So they walked to the store",
+        "And the man bought some grapes.",
+        "He gave one to the duck and the duck said,",
+        "\"Hmmm..No thanks. But you know what sounds good?",
+        "It would make my day.",
+        "Do you think this store",
+        "Do you think this store",
+        "Do you think this store has any lemonade?\"",
+
+        "",
+
+        "Then he waddled away.",
+        "(Waddle waddle)",
+        "Then he waddled away.",
+        "(Waddle waddle waddle)",
+        "Then he waddled away",
+        "(Waddle waddle)"
+      ]
+    },
+
+    {
+      "title": "Your New Boyfriend",
+      "artist": "Wilbur Soot",
+      "id": 4,
+      "url": "https://www.youtube.com/watch?v=Xa0Swz3X1cQ",
+      "lyrics": [
+        "Life isn't quite what I thought I'd be",
+        "When I was a kid on VoIP",
+        "I thought when I get older",
+        "I'd marry her, I told her",
+        "Now I'm 26, and I work in an office",
+        "Nine 'til five's not the best, I'll be honest",
+        "If I could change a single thing",
+        "I'd make it me and not him",
+
+        "",
+
+        "But he's in your bed, I'm in your Twitch chat",
+        "I've got the key and he's just a doormat",
+        "And even though he's got social skills",
+        "That doesn't mean I can't pay the bills",
+        "Anyway, make the most of him",
+        "'Cause she moves on pretty bloody quick, oh-oh",
+        "Your new boyfriend's an arsehole (woo!)",
+
+        "",
+
+        "Yeah, I've met Jared (of course, I've met Jared)",
+        "The one who took you away from me",
+        "You hit it off instantly",
+        "I know, 'cause you won't stop telling me",
+        "I've seen his jawline, shoulders, and muscles",
+        "Push against his fashion sense",
+        "I've thought about what he looks like nude",
+        "I'm not gay, though",
+
+        "",
+
+        "'Cause she's living the dream (living the dream, living the dream)",
+        "Oh, she's living the dream",
+        "From back when we were 17",
+        "She's living the dream (living the dream, living the dream)",
+        "Oh, she's living the dream",
+        "From back when we were 17",
+
+        "",
+
+        "How on earth could I be saved?",
+        "When I'm one click away from insane",
+        "I just think that I deserve",
+        "A little bit of what I earned",
+        "I'm not gonna make another scene",
+        "The one I made when I was 23",
+        "Means I'm not allowed in Disney World",
+
+        "",
+
+        "But he's in your bed, and I'm in your Twitch chat",
+        "I've got the key and he's just a doormat",
+        "'Cause even though he's got social skills",
+        "That doesn't mean I can't pay the bills",
+        "Anyway, make the most of him",
+        "'Cause she moves on pretty bloody quick, oh-oh",
+        "Your new boyfriend's an arsehole",
+
+        "",
+
+        "I think about you every day (every day)",
+        "So how on earth can I be saved? (Can I be saved?)",
+        "I think about him a lot as well (I think about him)",
+        "Maybe if he wasn't fine as hell (he's really fine as hell)",
+
+        "",
+
+        "'Cause you're beauty",
+        "And you're grace (and you're grace)",
+        "Your telephone calls are my favourite place",
+        "And I want you to notice me",
+        "With no restraining order, please (Jason Derulo)",
+        "I want you to care",
+        "I want to smell your hair"
+      ]
+    },
+
+    {
+      "title": "sleeping in the nether",
+      "artist": "CG5",
+      "id": 5,
+      "url": "https://www.youtube.com/watch?v=tF_0X6CKJd8",
+      "lyrics": [
+        "Golly, my brain's rotting away",
+        "Dumber and dumber-er every day",
+        "Laughin' at mm-mm monkey memes",
+        "Totally tearing at the seams",
+        "But I'm having a good time",
+        "Gettin' stupider, stupider-der-der",
+        "But no matter how dumb I get",
+        "Just know that",
+
+        "",
+
+        "You won't catch me sleeping in the nether",
+        "That's impossible, impossible",
+        "Sleeping in the nether",
+        "It's unnatural, no",
+        "You won't catch me sleeping in the nether",
+
+        "",
+
+        "Pog, Pog-champ, that's all I know",
+        "I'm sayin', \"Yeaw\" everywhere I go",
+        "Potatoes and cat-jams for breakfast",
+        "Pluto is a planet, I stand behind this",
+        "You can call me crazy (pa-pa-pa-pa)",
+        "Well to that I say, \"Big Chungus\" 'cause I'm lazy",
+        "Music go brr, music go brr, music go brrr (pa-pa-pa-pa)",
+
+        "",
+
+        "You won't catch me sleeping in the nether",
+        "That's impossible, impossible",
+        "Sleeping in the nether (this is spooky man)",
+        "It's unnatural, no",
+        "You won't catch me sleeping in the nether (eh)",
+        "That's impossible, impossible",
+        "Sleeping in the nether (yas)",
+        "It's unnatural (whoa!)",
+        "You won't catch me sleeping in the nether"
+      ]
+    },
+
+    {
+      "title": "I see a Dreamer",
+      "artist": "CG5",
+      "id": 6,
+      "url": "https://www.youtube.com/watch?v=SXJGTnVfJic",
+      "lyrics": [
+        "As the wind whips 'round,",
+        "I take a breath for victory.",
+        "Wanna play tag, or wave your white flag?",
+        "Cuz you'll never touch me!",
+
+        "",
+
+        "King of hearts, all in,",
+        "It's not a sin to wanna win.",
+        "Can't see me flying like a bee, black and yellow energy,",
+        "Only me on my team, naturally.",
+
+        "",
+
+        "I see a dreamer over there by the water,",
+        "But I got no, But I got no,",
+        "Kakorrhaphiophobia.",
+        "I see a dreamer,",
+        "And he's ripe for the slaughter",
+        "But I got no, But I got no,",
+        "Kakorrhaphiophobia.",
+        "Phobia, phobia, phobia.",
+
+        "",
+
+        "I hear battalions sing of my demise, but I don't know the words,",
+        "I take a road of my own making,",
+        "On a journey, no returning.",
+        "Wah oh, wah oh,",
+        "That's how it goes.",
+        "They've drawn the battle line,",
+        "And I see fire in their eyes.",
+
+        "",
+
+        "Na na na na na na,",
+        "I'm better off not listening.",
+        "Na na na na na na,",
+        "I've got my own song to sing.",
+        "Flying like a bee, black and yellow energy",
+        "Only me on my team, naturally.",
+
+        "",
+
+        "I see a dreamer over there by the water,",
+        "But I got no, But I got no,",
+        "Kakorrhaphiophobia.",
+        "I see a dreamer,",
+        "And he's ripe for the slaughter",
+        "But I got no, But I got no,",
+        "Kakorrhaphiophobia.",
+        "Phobia, phobia, phobia.",
+
+        "",
+
+        "My boat is full, why don't you swim?",
+        "Enjoy my fortress, I'll be right in.",
+        "I stare a hole through danger's soul.",
+        "We all know,",
+        "I can do this, eyes closed.",
+
+        "",
+
+        "I refuse to fail,",
+        "So heed this cautionary tale.",
+        "You've got dragons, my little friend,",
+        "You'll conquer them in the end.",
+        "If you can.",
+
+        "",
+
+        "I see a dreamer over there by the water,",
+        "But I got no, But I got no,",
+        "Kakorrhaphiophobia.",
+        "I see a dreamer,",
+        "And he's ripe for the slaughter",
+        "But I got no, But I got no,",
+        "Kakorrhaphiophobia.",
+        "Phobia, phobia, phobia."
+      ]
+    },
+
+    {
+      "title": "Good To Be Alive",
+      "artist": "CG5",
+      "id": 7,
+      "url": "https://www.youtube.com/watch?v=GYtBoxGB6Wo",
+      "lyrics": [
+        "I'm waking up",
+        "Breathing in clean air",
+        "What a day, yeah",
+        "What a sunny, funny day",
+        "I feel so high, I can't deny",
+        "A little better than okay",
+        "Nowhere to go",
+        "I shoot for stars, I'm Galileo",
+        "Pack your bags and don't be late",
+        "The scenery flies before my eyes",
+        "Don't you dream of home, cuz it'll have to wait",
+
+        "",
+
+        "It's good to be alive",
+        "It's good to be alive",
+        "I'm happy to survive",
+        "So good",
+
+        "",
+
+        "Can't kill my la-di-da vibe",
+        "Suffocate my feelin' alright",
+        "Or asphyxiate my hype",
+        "My bridges burned, no stone unturned",
+        "It's a relations' massacre",
+        "My new absolution",
+        "My new lease on life has just begun today",
+        "I ain't worried 'bout the fakes, or the bodies in my wake",
+        "Baby, I'm a firework, like Pompeii",
+
+        "",
+
+        "It's good to be alive",
+        "It's good to be alive",
+        "I'm happy to survive",
+        "So, so good",
+
+        "",
+
+        "The saints and angels sing",
+        "Choir of the bells chime, ring ring ring",
+        "I feel alive",
+        "So alive!",
+
+        "",
+
+        "It's good to be alive",
+        "It's good to be alive",
+        "I'm happy to survive",
+        "So, so good",
+
+        "",
+
+        "It's good!",
+        "So good!",
+        "It's good!",
+        "So good!"
+      ]
+    },
+
+    {
+      "title": "Everything Is AWESOME!!!",
+      "artist": "Tegan and Sara & The Lonely Island",
+      "id": 8,
+      "url": "https://www.youtube.com/watch?v=StTqXEQ2l-Y",
+      "lyrics": [
+        "Everything is awesome",
+        "Everything is cool when you're part of a team",
+        "Everything is awesome",
+        "When you're living out a dream",
+
+        "",
+
+        "Everything is better when we stick together",
+        "Side by side you and I are gonna win forever",
+        "Let's party forever",
+        "We're the same, I'm like you, you're like me",
+        "We are working in harmony",
+
+        "",
+
+        "Everything is awesome",
+        "Everything is cool when you're part of a team",
+        "Everything is awesome",
+        "When you're living out a dream",
+
+        "",
+
+        "Woooo! 3, 2, 1, go",
+        "Have you heard the news? Everyone's talkin'",
+        "Life is good 'cause everything's awesome",
+        "Lost my job, there's a new opportunity",
+        "More free time for my awesome community",
+        "I feel more awesome than an awesome possum",
+        "Dip my body in chocolate frostin'",
+        "Three years later wash off the frostin'",
+        "Smellin' like a blossom, everything is awesome",
+        "Stepped in mud, got new brown shoes",
+        "It's awesome to win and it's awesome to lose",
+        "(it's awesome to lose)",
+
+        "",
+
+        "Everything is better when we stick together",
+        "Side by side you and I are gonna win forever",
+        "Let's party forever",
+        "We're the same, I'm like you, you're like me",
+        "We are working in harmony",
+
+        "",
+
+        "Everything is awesome",
+        "Everything is cool when you're part of a team",
+        "Everything is awesome",
+        "When you're living out a dream",
+
+        "",
+
+        "Blue skies, bouncy springs",
+        "We just named two awesome things",
+        "A Nobel prize, a piece of string",
+        "You know what's awesome? Everything",
+        "Dogs with fleas, allergies",
+        "A book of Greek antiquities",
+        "Brand new pants, a very old vest",
+        "Awesome items are the best",
+        "Trees, frogs, clogs, they're awesome",
+        "Rocks, clocks, and socks, they're awesome",
+        "Figs, and jigs, and twigs, that's awesome",
+        "Everything you see or think or say is awesome",
+
+        "",
+
+        "Everything is awesome",
+        "Everything is cool when you're part of a team",
+        "Everything is awesome",
+        "When you're living out a dream"
+      ]
+    },
+
+    {
+      "title": "I've Had Enough of You",
+      "artist": "Billie Bust Up",
+      "id": 9,
+      "url": "https://www.youtube.com/watch?v=fGO1RjnprUc",
+      "lyrics": [
+        "You!",
+        "You've been nothing but a thorn in my side since day one!",
+        "But I am Fantoccio the Great and I'll not... ha!",
+        "Be outdone!",
+
+        "",
+
+        "Welcome to Fantoccio's spectacular theatre in the pound!",
+        "Please excuse my thespian vernacular",
+        "When I say: thou ist going down!",
+
+        "",
+
+        "I've had enough of you",
+        "So time to be my puppet on a string",
+        "I've had enough of you",
+        "Oh dance my little muppet plaything!",
+
+        "",
+
+        "Now!",
+        "The audience is thirsty for fun",
+        "Time to run",
+        "'Cause now your denouement has already begun!",
+        "That means you're done!",
+
+        "",
+
+        "We could both be pirates on the sea",
+        "You'll swab the deck and play your part for me",
+        "Mops galore!",
+        "You'd better keep it clean!",
+        "Watch out now my little friend, 'cause sharkspeare's looking mean!",
+
+        "",
+
+        "I've had enough of you",
+        "So time to be my puppet on a string",
+        "I've had enough of you",
+        "Oh dance my little muppet plaything!",
+
+        "",
+
+        "A battle like no other",
+        "Better move! 'Cause here's another!",
+        "At least you'll get to see defeat in epic style!",
+
+        "",
+
+        "The audience is primed, each attack right on time",
+        "Seeing you entwined is so worthwhile!",
+
+        "",
+
+        "But why stop there?",
+        "Add a lion, a bear",
+        "What's wrong my petite chère? Why don't you smile!",
+
+        "",
+
+        "The final act is sure to be a theatrical plot twist worthy of a prize",
+        "Want a shot? You better be more tactical",
+        "Messin' with Fantoccio is never wise!",
+
+        "",
+
+        "I've had enough of you",
+        "So won't you be my puppet on a string",
+        "I've had enough of you",
+        "Oh dance my little muppet plaything!",
+        "I'm up to here with you",
+        "So why don't you finally face it",
+        "Your fate is sealed",
+
+        "",
+
+        "And everything you do is what I say!",
+        "Starting now and everyday",
+        "You'll be my puppet, learn to love it",
+        "Every word I say you'll covet!",
+
+        "",
+
+        "Start-a-new, stuck like glue",
+        "Bid your former self adieu",
+        "'Cause I've had enough of you!"
+      ]
+    },
+
+    {
+      "title": "Who's The Batman",
+      "artist": "Patrick Stump",
+      "id": 10,
+      "url": "https://www.youtube.com/watch?v=8jutkNkVgXQ",
+      "lyrics": [
+        "In the darkest night, huh",
+        "I make the bad guys fall, huh",
+        "There's a million heroes",
+        "But I'm the best of them all, yeah",
+
+        "",
+
+        "Who has the coolest gadgets? (Batman!)",
+        "Who has the tricked out ride? (Batman!)",
+        "Who does the sickest backflips? (Batman!)",
+        "Nananananana Batman, yeah!",
+
+        "",
+
+        "Hey, hey, Batman yeah!",
+        "Hey, hey, Batman yeah!",
+        "Hey, hey, Batman yeah!",
+        "Dada dada dada dada Batman, yeah!",
+
+        "",
+
+        "You think my muscles are big? (Thanks)",
+        "You haven't seen my brain, huh",
+        "Ladies, it's okay if you stare (Why?)",
+        "'Cause I'm a billionaire",
+        "And this is me playing guitar also",
+
+        "",
+
+        "I get the last laugh",
+        "I get the final grin",
+        "Throw you into the asylum with Harley Quinn",
+        "Turn Two-Face, to black-and-blue face",
+        "I 100% am not Bruce Wayne, yeah",
+
+        "",
+
+        "Who is the manliest man? (Batman!)",
+        "With the buns of steel? (Batman!)",
+        "Who could choke hold a bear? (Batman!)",
+        "Who never skips leg-day? (Batman!)",
+        "Who always pays their taxes (NOT Batman!)",
+        "Yeah yeah yeah yeah yeah yeah Batman",
+        "Batman, Batman, Batman, I'm Batman",
+
+        "",
+
+        "Hey, hey, Batman yeah!",
+        "Hey, hey, Batman yeah!",
+        "Hey, hey, Batman yeah!",
+        "Dada dada dada dada Batman!",
+
+        "",
+
+        "Who has the coolest gadgets? (Batman!)",
+        "Who has the tricked out ride? (Batman!)",
+        "Who does the sickest backflips? (Batman!)",
+        "Nananananana Batman, nananananana",
+
+        "",
+
+        "Who is the manliest man? (Batman!)",
+        "With the buns of steel? (Batman!)",
+        "Who could choke hold a bear? (Batman!)",
+        "Nananananana, nananananana",
+        "Who never skips leg-day? (Batman!)",
+        "Who always pays their taxes (NOT Batman!)",
+        "Nananananana, nananananana, yeah"
+      ]
+    },
+
+    {
+      "title": "How are you, Mr Dan? Transportation Song",
+      "artist": "HowAreYouMrDan",
+      "id": 11,
+      "url": "https://www.youtube.com/watch?v=vVkIN2Xw2HY",
+      "lyrics": [
+        "I really need a bicycle",
+        "What do I need?",
+        "A bicycle",
+        "I'd never be late for school because what would I ride?",
+        "A bicycle",
+
+        "",
+
+        "I really need a motorcycle",
+        "What do I need? ",
+        "A motorcycle",
+        "I'd never be late for school because what would I ride?",
+        "A motorcycle",
+
+        "",
+
+        "I really need to ride the train ",
+        "What do I need to do?",
+        "Ride a train",
+        "I'd never be late for school because what should I do?",
+        "Ride a train",
+
+        "",
+
+        "I really need to drive a car",
+        "What do I need to do?",
+        "Drive a car",
+        "I'd never be late for school because what should I do?",
+        "Drive a car",
+
+        "",
+
+        "I really need to fly an airplane",
+        "What do I need to do? ",
+        "Fly an airplane",
+        "I'd never be late for school because what should I do?",
+        "Fly an airplane"
+      ]
+    },
+
+    {
+      "title": "Lyin to me",
+      "artist": "CG5",
+      "id": 12,
+      "url": "https://www.youtube.com/watch?v=PShRULA8sOY",
+      "lyrics": [
+        "Yeah",
+        "oh oh",
+        "ah ah",
+
+        "",
+
+        "Oops, they done did it again",
+        "Another mate dead, misplaced his head",
+        "Oh, who could it be?",
+        "I mean, it definitely wasn't me",
+        "No-no-no clue where that charlatan ran",
+        "I've been around the Skeld, only know too well",
+        "Villain vampires want fresh blood",
+        "So now everyone's sus",
+
+        "",
+
+        "Are you crawling 'round the vents",
+        "Or can you prove your innocence?",
+
+        "",
+
+        "Don't go lyin' to me",
+        "I saw a body lyin' there",
+        "Don't go lyin' to me",
+        "Don't go lyin'",
+        "Don't go lyin'",
+        "I ain't gonna let there be",
+        "No more dyin', no more dyin'",
+        "Don't go lyin' to me",
+        "I saw a body lyin' there",
+        "It was right there",
+
+        "",
+
+        "So Jordan was in Medbay, Ellie in elec'",
+        "Jerome was roaming through the hallways",
+        "Guess we gotta, gotta do a triple-check",
+        "It ain't the killer's holiday",
+
+        "",
+
+        "Are you crawling 'round the vents",
+        "Or can you prove your innocence?",
+
+        "",
+
+        "Don't go lyin' to me",
+        "I saw a body lyin' there",
+        "Don't go lyin' to me",
+        "Don't go lyin'",
+        "Don't go lyin'",
+        "I ain't gonna let there be",
+        "No more dyin', no more dyin'",
+        "Don't go lyin' to me",
+        "I saw a body lyin' there",
+        "It was right there",
+
+        "",
+
+        "",
+
+        "(Don't go lyin' to me)",
+        "(Do-do-don't go lyin' to me)",
+        "It was right there",
+        "It was right there",
+        "(Don't go lyin' to me)",
+        "(Do-do-don't go lyin' to me)",
+        "It was right there",
+
+        "",
+
+        "Listen to me, listen to now, lend me your ears",
+        "Let me lay it out easy, so to lessen all your fears",
+        "Just living and loving, not about to let you down",
+        "Let's look at this logically, figure this out",
+        "We can likely verify each other alibis",
+        "No need to allegate, litigate, itemize lies",
+        "I just wanna live free, liberty, let me be",
+        "And I won't be ejected, not a liability",
+        "Back off!",
+
+        "",
+
+        "Don't go lyin' to me",
+        "I saw a body lyin' there",
+        "Don't go lyin' to me",
+        "Don't go lyin'",
+        "Don't go lyin'",
+        "I ain't gonna let there be",
+        "No more dyin', no more dyin'",
+        "Don't go lyin' to me",
+        "I saw a body, a body!",
+        "Don't go lyin' to me",
+        "I saw a body lyin' there",
+        "Don't go lyin' to me",
+        "Don't go lyin'",
+        "Don't go lyin'",
+        "I ain't gonna let there be",
+        "No more dyin', no more dyin'",
+        "Don't go lyin' to me",
+        "I saw a body lyin' there",
+        "It was right there"
+      ]
+    },
+
+    {
+      "title": "DK Rap",
+      "artist": "George Andreas and Chris Sutherland",
+      "id": 13,
+      "url": "https://www.youtube.com/watch?v=RcP91tQ4ZSM",
+      "lyrics": [
+        "Here, here, here we go!",
+
+        "",
+
+        "So they're finally here, performing for you,",
+        "If you know the words, you can join in too,",
+        "Put your hands together, if you want to clap,",
+        "As we take you through, this monkey rap!",
+
+        "",
+
+        "Huh!",
+        "D.K., Donkey Kong!!",
+
+        "",
+
+        "He's the leader of the bunch, you know him well,",
+        "He's finally back to kick some tail,",
+        "His Coconut Gun can fire in spurts,",
+        "If he shoots ya, it's gonna hurt,",
+        "He's bigger, faster, and stronger too,",
+        "He's the first member of the D.K. crew!",
+
+        "",
+
+        "Huh!",
+        "D.K., Donkey Kong!",
+        "D.K., Donkey Kong is here!",
+
+        "",
+
+        "This Kong's got style, so listen up dudes,",
+        "She can shrink in size, to suit her mood,",
+        "She's quick and nimble when she needs to be,",
+        "She can float through the air and climb up trees!",
+        "If you choose her, you'll not choose wrong,",
+        "With a skip and a hop, she's one cool Kong!",
+
+        "",
+
+        "Huh!",
+        "D.K., Donkey Kong!",
+
+        "",
+
+        "He has no style, he has no grace,",
+        "Th-th-th-this Kong has a funny face,",
+        "He can handstand when he needs to,",
+        "And stretch his arms out, just for you,",
+        "Inflate himself just like a balloon,",
+        "This crazy Kong just digs this tune!",
+
+        "",
+
+        "Huh!",
+        "D.K., Donkey Kong!",
+        "D.K., Donkey Kong is here!",
+
+        "",
+
+        "He's back again and about time too,",
+        "And this time he's in the mood,",
+        "He can fly real high with his jetpack on,",
+        "With his pistols out, he's one tough Kong!",
+        "He'll make you smile when he plays his tune,",
+        "But Kremlings beware 'cause he's after you!",
+
+        "",
+
+        "Huh!",
+        "D.K., Donkey Kong!",
+        "Huh!",
+
+        "",
+
+        "Finally, he's here for you,",
+        "It's the last member of the D.K. crew!",
+        "This Kong's so strong, it isn't funny,",
+        "Can make a Kremling cry out for mummy,",
+        "Can pick up a boulder with relative ease,",
+        "Makes crushing rocks seem such a breeze,",
+        "He may move slow, he can't jump high,",
+        "But this Kong's one heck* of a guy!",
+
+        "",
+
+        "Huh!",
+        "C'mon Cranky, take it to the fridge!",
+
+        "",
+
+        "W-w-w-walnuts. peanuts. pineapple smells.",
+        "Grapes. melons. oranges and coconut shells!",
+        "Ahh yeah!",
+        "Walnuts, peanuts, pineapple smells,",
+        "Grapes, melons, oranges and coconut shells!",
+        "Ahh yeah!"
+      ]
+    },
+
+    {
+      "title": "Not Evil",
+      "artist": "Tiffany Haddish",
+      "id": 14,
+      "url": "https://www.youtube.com/watch?v=bvqvRoMQ2Z8",
+      "lyrics": [
+        "Oh no, are we in a musical?",
+        "Uh, hope not",
+
+        "",
+
+        "Hello, friends, my name is Queen Watevra Wa'Nabi",
+        "Don't worry, I'm totally not one of those evil queens",
+        "You've read about in fairy tales or seen in the movies",
+        "And there's no reason at all to be suspicious of me",
+
+        "",
+
+        "Not evil, not evil, no, the least evil person I know",
+        "Hmm-mm",
+        "Not evil, not evil, no, the least evil person I know",
+        "I don't know, it's very suspicious that you're leading with this",
+
+        "",
+
+        "I'm so not a villain, I have zero evil plans",
+        "No ulterior motive, just want to help where I can",
+        "I wanna shower you with gifts",
+        "'Cause I'm selfless and sweet",
+        "So there's no reason at all to be suspicious of",
+        "Queen Watevra Wa'Nabi",
+        "The least evil queen in history",
+        "And if you do not believe me",
+        "I totally won't imprison your family",
+        "'Cause that'd be evil and that's so not me",
+
+        "",
+
+        "Not evil, not evil, no, the least evil person I know",
+        "Really? 'Cause I'm getting super evil vibes here",
+        "Not evil, not evil, no, the least evil person I know",
+
+        "",
+
+        "Benny, do you like spaceships?",
+        "'Cause I think they are great",
+        "How'd you know that?",
+        "Loving spaceships is my one defining trait!",
+        "Well now, my good friend",
+        "You can build the spaceship of your dreams",
+        "On your very own planet with your own spaceship-building scene",
+
+        "",
+
+        "Come on, do not fall for this",
+        "Wildstyle!",
+        "Haven't you heard?",
+        "There's no reason at all to be suspicious of her",
+
+        "",
+
+        "Not evil, not evil, no, the least evil person I know",
+        "Yeah, I know she keeps saying that but she's clearly an evil queen",
+        "Not evil, not evil, no, the least evil person I know",
+        "Yar, well, I'm not buyin' it",
+
+        "",
+
+        "MetalBeard, a pirate without a ship, that's so cruel",
+        "It's like a spider without a web or a queen without a fool",
+        "Even her metaphors are suspicious",
+        "I've got a surprise for you",
+        "A planet that's really a pirate ship",
+        "And the population: your crew",
+        "Her story checks out, she's cool, not evil",
+
+        "",
+
+        "What about me?",
+        "Unikitty, what's the most glitter you can imagine?",
+        "A lot",
+        "Times that by infinity",
+        "Woohoo!",
+        "And, Batman",
+        "Don't even try it, lady, I don't need anything",
+        "Oh, I know, that's why I'm going to give you half of everything",
+        "Uh, like everything everything?",
+        "Everything everything",
+        "She's rad, this chick gets me",
+        "Here's some other adjectives",
+        "People use to describe me:",
+        "Unduplicitous, unmalicious, unconniving, unnasty",
+        "You're clearly just adding 'un'",
+        "To words that describe you",
+        "Who? Me?",
+
+        "",
+
+        "I'm Queen Watevra Wa'Nabi",
+        "I never trick people into trusting me",
+        "By hiding my true personalities",
+        "So I can use them to accomplish my evil deeds",
+        "'Cause that'd be evil and that's so not me",
+
+        "",
+
+        "I never cheat, I never bribe, I never scheme, I never lie",
+        "And that wasn't a lie when I said just now that I never lie",
+        "'Cause I never lie and I never laugh when children cry",
+        "And I never poison enemies of mine",
+        "And I never cry when I'm alone at night",
+        "'Cause I'm not sad, I love my life",
+        "I'm gettin' off track",
+        "Let me get back to the point I was makin'",
+
+        "",
+
+        "I'm Queen Watevra Wa'Nabi",
+        "The most least evil person you'll ever meet",
+        "And if you make eye contact with me",
+        "I totally won't have you executed immediately",
+        "'Cause that'd be evil (Evil) Evil (Evil), evil, and that's so not me"
+      ]
+    },
+
+    {
+      "title": "Roadtrip",
+      "artist": "Dream ft. PmBata",
+      "id": 15,
+      "url": "https://www.youtube.com/watch?v=Ow_PNMtMGhU",
+      "lyrics": [
+        "Secure the bag, know what I'm sayin'?",
+        "Banrisk on the beat",
+        "Ayo, Perish, this stuff hot, boy",
+
+        "",
+
+        "People change like the tides in the ocean",
+        "At least I think or am I dead wrong?",
+        "Foot on the brake, at the light I don't notice",
+        "I sit and wait until the next song",
+
+        "",
+
+        "20 hours in an old van",
+        "Up the east coast, through the cold wind",
+        "Drove 20 hours by the ocean",
+        "Up the east coast, what a road trip",
+
+        "",
+
+        "Now that interstate is paved with memories",
+        "Of a past life I lived when I was 18",
+        "And every winter, I think back to what we used to be",
+        "In that past life we lived at 18",
+
+        "",
+
+        "Oh, oh, oh",
+        "Whoa, whoa, whoa",
+        "Oh, oh, oh",
+        "Whoa, whoa, whoa",
+
+        "",
+
+        "Uh, I reminisce about a past life",
+        "Things change, I get it, 'cause nothing lasts right?",
+        "Yeah, and I was thinking 'bout her last night",
+        "Scrolling through our memories, debating 'bout our last times",
+        "Ay, for a minute, we was cool",
+        "Then we flew just a lil' too close to the sun",
+        "Now we finished, now we through",
+        "Guess we knew one day we would have to grow up",
+
+        "",
+
+        "20 hours in an old Ford",
+        "Across the Midwest, thinking, what for?",
+        "Drove 20 hours, but it's hopeless",
+        "Across the Midwest, what a road trip",
+
+        "",
+
+        "Now that interstate is paved with memories",
+        "Of a past life I lived when I was 18",
+        "And every winter, I think back to what we used to be",
+        "In that past life we lived at 18"
+      ]
+    },
+
+    {
+      "title": "Mask",
+      "artist": "Dream",
+      "id": 16,
+      "url": "https://www.youtube.com/watch?v=Gp9gFXf56yQ",
+      "lyrics": [
+        "I wear a mask with a smile for hours at a time",
+        "stare at the ceiling while I hold back whats on my mind",
+        "and when they ask me how I'm doin' I say I'm just fine",
+        "and when they ask me how I'm doin' I say I'm just",
+
+        "",
+
+        "But the fact is, I can never get off of my mattress",
+        "and all that they can ask is, why are you so sad kid, why are you so sad kid",
+        "that's what the mask is, that's what the point of the mask is",
+
+        "",
+
+        "so you can see I'm trying, you won't see me crying, ill just keep on smiling, im good",
+        "and it just keeps on piling, its so terrifying, but I keep on smiling, I'm good",
+
+        "",
+
+        "I've been caring too much for so long, been comparing myself for so long",
+        "I've been wearing a smile for so long its real, so long its real, so long its real",
+
+        "",
+
+        "always being judged by a bunch of strange faces",
+        "scared to go outside haven't seen the light in ages",
+        "but I've been places, so I'm okay-ish, so I'm okay-ish, yeah I'm okay bro",
+
+        "",
+
+        "But the fact is, I need help I'm failing all my classes",
+        "They think that I need glasses, I just really wish that I could pass this, wish that I could pass this",
+        "that's what the mask is, that's what the point of the mask is",
+
+        "",
+
+        "so you can see I'm trying, you won't see me crying, ill just keep on smiling, im good",
+        "and it just keeps on piling, its so terrifying, but I keep on smiling, I'm good",
+
+        "",
+
+        "I've been caring too much for so long, been comparing myself for so long",
+        "I've been wearing a smile for so long its real, so long its real, so long its real"
       ]
     }
   ]

@@ -17,14 +17,14 @@ import more_itertools
 load_dotenv()
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 intents = discord.Intents(messages=True, guilds=True, members=True, reactions=True, voice_states=True)
-bot = commands.Bot(command_prefix='-', intents=intents)
+bot = commands.Bot(command_prefix='?', intents=intents)
 
 with open("songs.json", 'r') as read_file:
     data = json.load(read_file)
     SONGS_COUNT = len(data['songs'])
     bot.songs = data['songs']
 
-# Role that's allowed to start practice sings 
+# Role that's allowed to start practice sings (unused for now)
 bot.ALLOWED_ROLE_ID = int(os.environ.get("ALLOWED_ROLE"))
 
 bot.song_id = 0
@@ -74,26 +74,28 @@ async def on_ready():
 async def help(ctx):
     embed = discord.Embed(title="Jego Lohnathan Help", colour=0xc961dd)
     allowed_role = ctx.guild.get_role(bot.ALLOWED_ROLE_ID)
-    embed.add_field(name=f"** **\nTo start a practice sings, use `-start [song id]`! You must have the `{allowed_role.name}` role.",
+    embed.add_field(name=f"** **\nTo start a practice sings, use `?start [song id]`! You must have the `{allowed_role.name}` role.",
         value="If no `song id` is provided, it will pick a random song.", inline=False)
     embed.add_field(name=f"** **\nOnce a song is started, get the next line from {bot.SINGS_CHANNEL.name}!",
         value="Minor typos and emoji are allowed.", inline=False)
+    embed.add_field(name="When a song finishes, it'll randomly choose another song to start.",
+        value=f"Use `?stop` to stop the practice sings (you must have the {allowed_role.name} role).")
     embed.add_field(name="** **", value="Bot by skytheguy#3630 for Mr Dan Discord Sings server", inline=False)
     await ctx.send(embed=embed)
 
-@bot.command()
-async def start(ctx, song=None):
-    if ctx.message.author not in ctx.guild.get_role(bot.ALLOWED_ROLE_ID).members:
-        return await ctx.send("Sorry, but you don't have permission to start a practice sings.")
-    
-    try:
-        song = int(song)
-    except (TypeError, ValueError):
-        return await ctx.send("Invalid song id")
+async def start_sings(song=None):
+    bot.next_line = None
+    bot.mistakes = 0
+
+    if song != None:
+        try:
+            song = int(song)
+        except (TypeError, ValueError):
+            return await bot.SINGS_CHANNEL.send("Invalid song id")
 
     if song not in range(1, SONGS_COUNT + 1):
         if song:
-            return await ctx.send("Invalid song id")
+            return await bot.SINGS_CHANNEL.send("Invalid song id")
         song_id = random.randint(1, SONGS_COUNT)
     else:
         song_id = song
@@ -107,10 +109,8 @@ async def start(ctx, song=None):
 
     lyrics_embed = discord.Embed(title="__Now starting practice sings!__", colour=0xc961dd)
     lyrics_embed.add_field(name=song_title, value=f"By {song_artist}")
-    lyrics_embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-    info_embed = discord.Embed(title=f"__Practice sings started!__", colour=0xc961dd)
+    info_embed = discord.Embed(title=f"__New practice sings started!__", colour=0xc961dd)
     info_embed.add_field(name=song_title, value=f"By {song_artist}")
-    info_embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
 
     def is_me(message):
         return message.author == bot.user
@@ -120,8 +120,17 @@ async def start(ctx, song=None):
     await bot.LYRICS_CHANNEL.send(f"Lyrics:")
     for lines in lyrics_list:
         await bot.LYRICS_CHANNEL.send(f"** **\n{lines}")
-    await ctx.send(embed=info_embed)
+    await bot.SINGS_CHANNEL.send(embed=info_embed)
+
+@bot.command()
+async def start(ctx, song=None):
+    if ctx.message.author not in ctx.guild.get_role(bot.ALLOWED_ROLE_ID).members:
+        return await ctx.send("Sorry, but you don't have permission to start practice sings.")
     
+    if bot.started:
+        return
+
+    await start_sings(song)
     bot.started = True
 
 @bot.command()
@@ -129,14 +138,12 @@ async def stop(ctx):
     if ctx.message.author not in ctx.guild.get_role(bot.ALLOWED_ROLE_ID).members:
         return
     if bot.started == False:
-        await ctx.send("No currently running practice sings")
+        return await ctx.send("No currently running practice sings")
 
     embed = discord.Embed(title="Stopped practice sings", colour=0xbd1800)
     embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
     await ctx.send(embed=embed)
     bot.started = False
-    bot.next_line = None
-    bot.mistakes = 0
 
 @bot.command(name="songs")
 async def list_songs(ctx):
@@ -144,7 +151,7 @@ async def list_songs(ctx):
     embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
     for index, song in enumerate(bot.songs):
         embed.add_field(name=f"{index + 1}: {song['title']} by {song['artist']}", value=song['url'], inline=False)
-    embed.add_field(name="** **\nUse `-start [song id]` to start a practice sings!", value="e.g. `-start 3` for The Duck Song.")
+    embed.add_field(name="** **\nUse `?start [song id]` to start a practice sings!", value="e.g. `?start 3` for The Duck Song.")
     await ctx.send(embed=embed)
 
 @bot.event
@@ -156,46 +163,48 @@ async def on_message(message):
     if message.content.lower() == "$kill" and message.author.id == 682778479229403136:
         await bot.close()
 
-    if bot.started and not (message.content.startswith('-') and message.author in
+    if bot.started and not (message.content.startswith('?') and message.author in
             message.guild.get_role(bot.ALLOWED_ROLE_ID).members):
 
         if not bot.next_line:
             bot.next_line = 1
-            
-        try:
             # next_line - 1 cause list zero-indexing
-            current_line = bot.song_data['lyrics'][bot.next_line - 1]
+            bot.current_line = bot.song_data['lyrics'][bot.next_line - 1]
 
-            # Remove custom and Unicode emojis
-            inputted_line = re.sub(RE_UNICODE_EMOJI, r'', message.content)
-            inputted_line = re.sub(RE_CUSTOM_EMOJI, r'', inputted_line)
-            
-            # Allow emoji-only messages
-            if not inputted_line:
-                return
 
-            # Allow minor errors or differences (80% similarity required) and delete incorrect messages
-            if ratio(inputted_line, current_line) >= 0.8:
-                bot.next_line += 1
-                if bot.song_data['lyrics'][bot.next_line - 1] == "":
+        # Remove custom and Unicode emojis
+        inputted_line = re.sub(RE_UNICODE_EMOJI, r'', message.content)
+        inputted_line = re.sub(RE_CUSTOM_EMOJI, r'', inputted_line)
+        
+        # Allow emoji-only messages
+        if not inputted_line:
+            return
+
+        # Allow minor errors or differences (80% similarity required) and delete incorrect messages
+        if ratio(inputted_line.lower(), bot.current_line.lower()) >= 0.8:
+            bot.next_line += 1
+
+            try:
+                bot.current_line = bot.song_data['lyrics'][bot.next_line - 1]
+                if bot.current_line == "":
                     # skip lines that are just newlines
                     bot.next_line += 1
-                return
-            else:
-                await message.delete()
-                mistake_embed = discord.Embed(colour=0xbd1800)
-                mistake_embed.add_field(name="Mistake", value=f"{message.author} said '{message.content}'")
-                bot.mistakes += 1
-                return await message.author.send(embed=mistake_embed)
-            
-        except IndexError:
-            embed = discord.Embed(title="Song completed!", colour=0xc961dd)
-            embed.add_field(name=f"{bot.song_data['artist']} - {bot.song_data['title']}",
-                value=f"We made {bot.mistakes} mistakes.")
-            await bot.SINGS_CHANNEL.send(embed=embed)
-            bot.started = False
-            bot.next_line = None
-            bot.mistakes = 0
+                    bot.current_line = bot.song_data['lyrics'][bot.next_line - 1]
+                    return
+
+            except IndexError:
+                embed = discord.Embed(title="Song completed!", colour=0xc9871c)
+                embed.add_field(name=f"{bot.song_data['artist']} - {bot.song_data['title']}",
+                    value=f"We made {bot.mistakes} mistakes.")
+                await bot.SINGS_CHANNEL.send(embed=embed)
+                await start_sings()
+
+        else:
+            await message.delete()
+            bot.mistakes += 1
+            mistake_embed = discord.Embed(colour=0xbd1800)
+            mistake_embed.add_field(name="Mistake", value=f"{message.author} said '{message.content}'")
+            return await message.author.send(embed=mistake_embed)
             
     await bot.process_commands(message)
 

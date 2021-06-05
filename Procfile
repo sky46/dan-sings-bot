@@ -1,0 +1,1 @@
+worker: python sings_bot.py

@@ -16,7 +16,7 @@ import more_itertools
 
 load_dotenv()
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
-intents = discord.Intents(messages=True, guilds=True, members=True, reactions=True)
+intents = discord.Intents(messages=True, guilds=True, members=True, reactions=True, voice_states=True)
 bot = commands.Bot(command_prefix='-', intents=intents)
 
 with open("songs.json", 'r') as read_file:
@@ -24,12 +24,17 @@ with open("songs.json", 'r') as read_file:
     SONGS_COUNT = len(data['songs'])
     bot.songs = data['songs']
 
+# Role that's allowed to start practice sings 
 bot.ALLOWED_ROLE_ID = int(os.environ.get("ALLOWED_ROLE"))
+
 bot.song_id = 0
 bot.started = False
 bot.songs_data = {}
 bot.next_line = None
 bot.mistakes = 0
+
+# Role that's given when joining VC
+bot.VC_ROLE_ID = int(os.environ.get("VC_ROLE"))
 
 bot.remove_command('help')
 
@@ -57,9 +62,12 @@ RE_CUSTOM_EMOJI = r"<:\w+:\d+>"
 
 @bot.event
 async def on_ready():
+    # Channel to do sings commands and practice sings
     bot.SINGS_CHANNEL = bot.get_channel(int(os.environ.get("SINGS_CHANNEL")))
-    bot.MISTAKES_CHANNEL = bot.get_channel(int(os.environ.get("MISTAKES_CHANNEL")))
+    # Channel to print lyrics
     bot.LYRICS_CHANNEL = bot.get_channel(int(os.environ.get("LYRICS_CHANNEL")))
+    # VC that gives role when joined
+    bot.ROLE_CHANNEL = bot.get_channel(int(os.environ.get("ROLE_CHANNEL")))
     print("We have logged in as jego lohnathan")
 
 @bot.command()
@@ -120,6 +128,9 @@ async def start(ctx, song=None):
 async def stop(ctx):
     if ctx.message.author not in ctx.guild.get_role(bot.ALLOWED_ROLE_ID).members:
         return
+    if bot.started == False:
+        await ctx.send("No currently running practice sings")
+
     embed = discord.Embed(title="Stopped practice sings", colour=0xbd1800)
     embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
     await ctx.send(embed=embed)
@@ -161,7 +172,7 @@ async def on_message(message):
             
             # Allow emoji-only messages
             if not inputted_line:
-                return await bot.MISTAKES_CHANNEL.send("not a mistake but emoji-only message detected")
+                return
 
             # Allow minor errors or differences (80% similarity required) and delete incorrect messages
             if ratio(inputted_line, current_line) >= 0.8:
@@ -188,5 +199,12 @@ async def on_message(message):
             
     await bot.process_commands(message)
 
+@bot.event
+async def on_voice_state_update(member, before, after):
+    role = discord.utils.get(member.guild.roles, id=bot.VC_ROLE_ID)
+    if before.channel != bot.ROLE_CHANNEL and after.channel == bot.ROLE_CHANNEL:
+        await member.add_roles(role)
+    elif before.channel == bot.ROLE_CHANNEL and after.channel != bot.ROLE_CHANNEL:
+        await member.remove_roles(role)
 
 bot.run(BOT_TOKEN)

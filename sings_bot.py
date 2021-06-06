@@ -222,6 +222,6 @@ async def on_message_edit(before, after):
     if allowed_role in before.author.roles:
         return
     else:
-        after.delete()
+        await after.delete()
 
 bot.run(BOT_TOKEN)

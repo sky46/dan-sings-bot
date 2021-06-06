@@ -218,7 +218,7 @@ async def on_message(message):
 
 @bot.event
 async def on_message_edit(before, after):
-    allowed_role = ctx.guild.get_role(bot.ALLOWED_ROLE_ID)
+    allowed_role = before.guild.get_role(bot.ALLOWED_ROLE_ID)
     if allowed_role in before.author.roles:
         return
     else:

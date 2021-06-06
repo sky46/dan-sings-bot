@@ -216,6 +216,7 @@ async def on_message(message):
 #     elif before.channel == bot.ROLE_CHANNEL and after.channel != bot.ROLE_CHANNEL:
 #         await member.remove_roles(role)
 
+@bot.event
 async def on_message_edit(before, after):
     allowed_role = ctx.guild.get_role(bot.ALLOWED_ROLE_ID)
     if allowed_role in before.author.roles:

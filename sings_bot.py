@@ -208,12 +208,12 @@ async def on_message(message):
             
     await bot.process_commands(message)
 
-@bot.event
-async def on_voice_state_update(member, before, after):
-    role = discord.utils.get(member.guild.roles, id=bot.VC_ROLE_ID)
-    if before.channel != bot.ROLE_CHANNEL and after.channel == bot.ROLE_CHANNEL:
-        await member.add_roles(role)
-    elif before.channel == bot.ROLE_CHANNEL and after.channel != bot.ROLE_CHANNEL:
-        await member.remove_roles(role)
+# @bot.event
+# async def on_voice_state_update(member, before, after):
+#     role = discord.utils.get(member.guild.roles, id=bot.VC_ROLE_ID)
+#     if before.channel != bot.ROLE_CHANNEL and after.channel == bot.ROLE_CHANNEL:
+#         await member.add_roles(role)
+#     elif before.channel == bot.ROLE_CHANNEL and after.channel != bot.ROLE_CHANNEL:
+#         await member.remove_roles(role)
 
 bot.run(BOT_TOKEN)

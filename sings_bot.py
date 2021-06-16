@@ -26,7 +26,7 @@ with open("songs.json", 'r') as read_file:
     SONGS_COUNT = len(data['songs'])
     bot.songs = data['songs']
 
-# Role that's allowed to start practice sings (unused for now)
+# Role that's allowed to start practice sings
 bot.ALLOWED_ROLE_ID = int(os.environ.get("ALLOWED_ROLE"))
 
 bot.song_id = 0
@@ -239,5 +239,13 @@ async def on_message(message):
 #         await member.add_roles(role)
 #     elif before.channel == bot.ROLE_CHANNEL and after.channel != bot.ROLE_CHANNEL:
 #         await member.remove_roles(role)
+
+@bot.event
+async def on_message_edit(before, after):
+    allowed_role = before.guild.get_role(bot.ALLOWED_ROLE_ID)
+    if allowed_role in before.author.roles:
+        return
+    else:
+        await after.delete()
 
 bot.run(BOT_TOKEN)

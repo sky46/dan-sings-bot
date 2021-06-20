@@ -7,12 +7,14 @@ from discord.ext import commands
 from Levenshtein import ratio
 
 import os
+from math import ceil
 from dotenv import load_dotenv
 import random
 import json
 import typing
 import re
 import more_itertools
+import asyncio
 
 load_dotenv()
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
@@ -72,7 +74,7 @@ async def on_ready():
 
 @bot.command()
 async def help(ctx):
-    embed = discord.Embed(title="Jego Lohnathan Help", colour=0xc961dd)
+    embed = discord.Embed(title="Jego Lohnathan Help", colour=0xb022cb)
     allowed_role = ctx.guild.get_role(bot.ALLOWED_ROLE_ID)
     embed.add_field(name=f"** **\nTo start a practice sings, use `?start [song id]`! You must have the `{allowed_role.name}` role.",
         value="If no `song id` is provided, it will pick a random song.", inline=False)
@@ -104,23 +106,33 @@ async def start_sings(song=None):
 
     song_title = bot.song_data['title']
     song_artist = bot.song_data['artist']
+
+    lyrics_embed = discord.Embed(title="__Now starting practice sings!__", colour=0xb022cb)
+    lyrics_embed.add_field(name=song_title, value=f"By {song_artist}")
+    info_embed = discord.Embed(title=f"__New practice sings started!__", colour=0xb022cb)
+    info_embed.add_field(name=song_title, value=f"By {song_artist}")
+
+    await bot.SINGS_CHANNEL.send(embed=info_embed)
+    bot.started = True
+
     lyrics_list = list(more_itertools.split_at(bot.song_data['lyrics'], lambda x: x == ""))
     lyrics_list = ["\n".join(lines) for lines in lyrics_list]
 
-    lyrics_embed = discord.Embed(title="__Now starting practice sings!__", colour=0xc961dd)
-    lyrics_embed.add_field(name=song_title, value=f"By {song_artist}")
-    info_embed = discord.Embed(title=f"__New practice sings started!__", colour=0xc961dd)
-    info_embed.add_field(name=song_title, value=f"By {song_artist}")
+    next_line_embed = discord.Embed(title=song_title, colour=0x0f5fbc)
+    next_line_embed.add_field(name="Next line", value=bot.song_data['lyrics'][0])
 
     def is_me(message):
         return message.author == bot.user
-    
     await bot.LYRICS_CHANNEL.purge(check=is_me)
+
     await bot.LYRICS_CHANNEL.send(embed=lyrics_embed)
     await bot.LYRICS_CHANNEL.send(f"Lyrics:")
+
     for lines in lyrics_list:
         await bot.LYRICS_CHANNEL.send(f"** **\n{lines}")
-    await bot.SINGS_CHANNEL.send(embed=info_embed)
+        await asyncio.sleep(1)
+
+    bot.next_line_message = await bot.LYRICS_CHANNEL.send(embed=next_line_embed)
 
 @bot.command()
 async def start(ctx, song=None):
@@ -131,7 +143,6 @@ async def start(ctx, song=None):
         return
 
     await start_sings(song)
-    bot.started = True
 
 @bot.command()
 async def stop(ctx):
@@ -140,19 +151,29 @@ async def stop(ctx):
     if bot.started == False:
         return await ctx.send("No currently running practice sings")
 
+    def is_me(message):
+        return message.author == bot.user
+    await bot.LYRICS_CHANNEL.purge(check=is_me)
+
     embed = discord.Embed(title="Stopped practice sings", colour=0xbd1800)
     embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
     await ctx.send(embed=embed)
     bot.started = False
 
 @bot.command(name="songs")
-async def list_songs(ctx):
-    embed = discord.Embed(title="Available songs", colour=0xc961dd)
+async def list_songs(ctx, page=1):
+    pages = ceil(len(bot.songs) / 25)
+    if page not in range(1, pages + 1):
+        return await ctx.send("Invalid page number")
+    
+    embed = discord.Embed(title=f"Available songs (page {page} of {pages})", colour=0xb022cb)
     embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
-    for index, song in enumerate(bot.songs):
-        embed.add_field(name=f"{index + 1}: {song['title']} by {song['artist']}", value=song['url'], inline=False)
-    embed.add_field(name="** **\nUse `?start [song id]` to start a practice sings!", value="e.g. `?start 3` for The Duck Song.")
+
+    for song in bot.songs[(page - 1) * 25 : page * 25]:
+        embed.add_field(name=f"{song['id']}: {song['title']} by {song['artist']}", value=song['url'], inline=False)
+
     await ctx.send(embed=embed)
+    await ctx.send("Use `?start [song number]` to start a practice sings!\ne.g. `?start 3` for The Duck Song.")
 
 @bot.event
 async def on_message(message):
@@ -190,10 +211,13 @@ async def on_message(message):
                     # skip lines that are just newlines
                     bot.next_line += 1
                     bot.current_line = bot.song_data['lyrics'][bot.next_line - 1]
-                    return
-
+                    
+                next_line_embed = discord.Embed(title=bot.song_data['title'], colour=0x0f5fbc)
+                next_line_embed.add_field(name="Next line", value=bot.current_line)
+                await bot.next_line_message.edit(embed=next_line_embed)
+                
             except IndexError:
-                embed = discord.Embed(title="Song completed!", colour=0xc9871c)
+                embed = discord.Embed(title="Song completed!", colour=0xb022cb)
                 embed.add_field(name=f"{bot.song_data['artist']} - {bot.song_data['title']}",
                     value=f"We made {bot.mistakes} mistakes.")
                 await bot.SINGS_CHANNEL.send(embed=embed)
@@ -208,16 +232,18 @@ async def on_message(message):
             
     await bot.process_commands(message)
 
-@bot.event
-async def on_voice_state_update(member, before, after):
-    role = discord.utils.get(member.guild.roles, id=bot.VC_ROLE_ID)
-    if before.channel != bot.ROLE_CHANNEL and after.channel == bot.ROLE_CHANNEL:
-        await member.add_roles(role)
-    elif before.channel == bot.ROLE_CHANNEL and after.channel != bot.ROLE_CHANNEL:
-        await member.remove_roles(role)
+# @bot.event
+# async def on_voice_state_update(member, before, after):
+#     role = discord.utils.get(member.guild.roles, id=bot.VC_ROLE_ID)
+#     if before.channel != bot.ROLE_CHANNEL and after.channel == bot.ROLE_CHANNEL:
+#         await member.add_roles(role)
+#     elif before.channel == bot.ROLE_CHANNEL and after.channel != bot.ROLE_CHANNEL:
+#         await member.remove_roles(role)
 
 @bot.event
 async def on_message_edit(before, after):
+    if before.author == bot.user:
+        return
     allowed_role = before.guild.get_role(bot.ALLOWED_ROLE_ID)
     if allowed_role in before.author.roles:
         return

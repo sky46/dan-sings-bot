@@ -27,7 +27,7 @@ with open("songs.json", 'r') as read_file:
     bot.songs = data['songs']
 
 # Role that's allowed to start practice sings
-bot.ALLOWED_ROLE_ID = int(os.environ.get("ALLOWED_ROLE"))
+bot.ALLOWED_ROLE_IDS = [int(os.environ.get("ALLOWED_ROLE")), int(os.environ.get("ALLOWED_ROLE_1"))]
 
 bot.song_id = 0
 bot.started = False
@@ -70,18 +70,25 @@ async def on_ready():
     bot.LYRICS_CHANNEL = bot.get_channel(int(os.environ.get("LYRICS_CHANNEL")))
     # VC that gives role when joined
     bot.ROLE_CHANNEL = bot.get_channel(int(os.environ.get("ROLE_CHANNEL")))
+    
+    # Roles allowed to start/stop signs
+    guild = bot.get_guild(int(os.environ.get("GUILD")))
+    bot.ALLOWED_MEMBERS = guild.get_role(bot.ALLOWED_ROLE_IDS[0]).members + guild.get_role(bot.ALLOWED_ROLE_IDS[1]).members
+    
     print("We have logged in as jego lohnathan")
 
 @bot.command()
 async def help(ctx):
     embed = discord.Embed(title="Jego Lohnathan Help", colour=0xb022cb)
-    allowed_role = ctx.guild.get_role(bot.ALLOWED_ROLE_ID)
-    embed.add_field(name=f"** **\nTo start a practice sings, use `?start [song id]`! You must have the `{allowed_role.name}` role.",
+    allowed_role = ctx.guild.get_role(bot.ALLOWED_ROLE_IDS[0])
+    allowed_role_1 = ctx.guild.get_role(bot.ALLOWED_ROLE_IDS[1])
+
+    embed.add_field(name=f"** **\nTo start a practice sings, use `?start [song id]`! You must have the `{allowed_role.name}` or {allowed_role_1.name} role.",
         value="If no `song id` is provided, it will pick a random song.", inline=False)
     embed.add_field(name=f"** **\nOnce a song is started, get the next line from {bot.SINGS_CHANNEL.name}!",
         value="Minor typos and emoji are allowed.", inline=False)
     embed.add_field(name="When a song finishes, it'll randomly choose another song to start.",
-        value=f"Use `?stop` to stop the practice sings (you must have the {allowed_role.name} role).")
+        value=f"Use `?stop` to stop the practice sings (you must have the {allowed_role.name} or {allowed_role_1.name} role).")
     embed.add_field(name="** **", value="Bot by skytheguy#3630 for Mr Dan Discord Sings server", inline=False)
     await ctx.send(embed=embed)
 
@@ -126,7 +133,7 @@ async def start_sings(song=None):
     await bot.LYRICS_CHANNEL.purge(check=is_me)
 
     await bot.LYRICS_CHANNEL.send(embed=lyrics_embed)
-    await bot.LYRICS_CHANNEL.send(f"**__Lyrics__**:\n****")
+    await bot.LYRICS_CHANNEL.send(f"**__Lyrics__**:\n** **")
 
     for lines in lyrics_list:
         await bot.LYRICS_CHANNEL.send(f"** **{lines}")
@@ -136,7 +143,7 @@ async def start_sings(song=None):
 
 @bot.command()
 async def start(ctx, song=None):
-    if ctx.message.author not in ctx.guild.get_role(bot.ALLOWED_ROLE_ID).members:
+    if ctx.message.author not in bot.ALLOWED_MEMBERS:
         return await ctx.send("Sorry, but you don't have permission to start practice sings.")
     
     if bot.started:
@@ -146,7 +153,7 @@ async def start(ctx, song=None):
 
 @bot.command()
 async def stop(ctx):
-    if ctx.message.author not in ctx.guild.get_role(bot.ALLOWED_ROLE_ID).members:
+    if ctx.message.author not in bot.ALLOWED_MEMBERS:
         return
     if bot.started == False:
         return await ctx.send("No currently running practice sings")
@@ -177,6 +184,10 @@ async def list_songs(ctx, page=1):
 
 @bot.event
 async def on_message(message):
+    if message.content.startswith("?"):
+        guild = bot.get_guild(int(os.environ.get("GUILD")))
+        bot.ALLOWED_MEMBERS = guild.get_role(bot.ALLOWED_ROLE_IDS[0]).members + guild.get_role(bot.ALLOWED_ROLE_IDS[1]).members
+
     if message.author == bot.user:
         return
     if message.channel != bot.SINGS_CHANNEL:
@@ -185,7 +196,7 @@ async def on_message(message):
         await bot.close()
 
     if bot.started and not (message.content.startswith('?') and message.author in
-            message.guild.get_role(bot.ALLOWED_ROLE_ID).members):
+            bot.ALLOWED_MEMBERS):
 
         if not bot.next_line:
             bot.next_line = 1
@@ -243,8 +254,10 @@ async def on_message(message):
 async def on_message_edit(before, after):
     if before.author == bot.user:
         return
-    allowed_role = before.guild.get_role(bot.ALLOWED_ROLE_ID)
-    if allowed_role in before.author.roles:
+    if before.channel != bot.SINGS_CHANNEL:
+        return
+
+    if before.author in bot.ALLOWED_MEMBERS:
         return
     else:
         await after.delete()

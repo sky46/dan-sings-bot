@@ -115,21 +115,21 @@ async def start_sings(song=None):
     await bot.SINGS_CHANNEL.send(embed=info_embed)
     bot.started = True
 
-    lyrics_list = list(more_itertools.split_at(bot.song_data['lyrics'], lambda x: x == ""))
-    lyrics_list = ["\n".join(lines) for lines in lyrics_list]
+    lyrics_list = list(more_itertools.split_when(bot.song_data['lyrics'], lambda x, y: x == y == "\n"))
+    lyrics_list = ["".join(line) for line in lyrics_list]
 
     next_line_embed = discord.Embed(title=song_title, colour=0x0f5fbc)
-    next_line_embed.add_field(name="Next line", value=bot.song_data['lyrics'][0])
+    next_line_embed.add_field(name="Next line", value=bot.song_data['lyrics'].split("\n")[0])
 
     def is_me(message):
         return message.author == bot.user
     await bot.LYRICS_CHANNEL.purge(check=is_me)
 
     await bot.LYRICS_CHANNEL.send(embed=lyrics_embed)
-    await bot.LYRICS_CHANNEL.send(f"Lyrics:")
+    await bot.LYRICS_CHANNEL.send(f"**__Lyrics__**:\n****")
 
     for lines in lyrics_list:
-        await bot.LYRICS_CHANNEL.send(f"** **\n{lines}")
+        await bot.LYRICS_CHANNEL.send(f"** **{lines}")
         await asyncio.sleep(1)
 
     bot.next_line_message = await bot.LYRICS_CHANNEL.send(embed=next_line_embed)
@@ -190,8 +190,7 @@ async def on_message(message):
         if not bot.next_line:
             bot.next_line = 1
             # next_line - 1 cause list zero-indexing
-            bot.current_line = bot.song_data['lyrics'][bot.next_line - 1]
-
+            bot.current_line = bot.song_data['lyrics'].split("\n")[bot.next_line - 1]
 
         # Remove custom and Unicode emojis
         inputted_line = re.sub(RE_UNICODE_EMOJI, r'', message.content)
@@ -206,11 +205,11 @@ async def on_message(message):
             bot.next_line += 1
 
             try:
-                bot.current_line = bot.song_data['lyrics'][bot.next_line - 1]
+                bot.current_line = bot.song_data['lyrics'].split("\n")[bot.next_line - 1]
                 if bot.current_line == "":
                     # skip lines that are just newlines
                     bot.next_line += 1
-                    bot.current_line = bot.song_data['lyrics'][bot.next_line - 1]
+                    bot.current_line = bot.song_data['lyrics'].split("\n")[bot.next_line - 1]
                     
                 next_line_embed = discord.Embed(title=bot.song_data['title'], colour=0x0f5fbc)
                 next_line_embed.add_field(name="Next line", value=bot.current_line)

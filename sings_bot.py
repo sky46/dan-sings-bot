@@ -105,11 +105,13 @@ async def start_sings(song=None):
     if song not in range(1, SONGS_COUNT + 1):
         if song:
             return await bot.SINGS_CHANNEL.send("Invalid song id")
-        song_id = random.randint(1, SONGS_COUNT)
+        previous_id = bot.song_id
+        while bot.song_id == previous_id:
+            bot.song_id = random.randint(1, SONGS_COUNT)
     else:
-        song_id = song
+        bot.song_id = song
 
-    bot.song_data = bot.songs[song_id - 1]
+    bot.song_data = bot.songs[bot.song_id - 1]
 
     song_title = bot.song_data['title']
     song_artist = bot.song_data['artist']

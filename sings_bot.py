@@ -35,6 +35,8 @@ bot.songs_data = {}
 bot.next_line = None
 bot.mistakes = 0
 
+bot.SONGS_PER_PAGE = 20
+
 # Role that's given when joining VC
 bot.VC_ROLE_ID = int(os.environ.get("VC_ROLE"))
 
@@ -171,14 +173,14 @@ async def stop(ctx):
 
 @bot.command(name="songs")
 async def list_songs(ctx, page=1):
-    pages = ceil(len(bot.songs) / 25)
+    pages = ceil(len(bot.songs) / bot.SONGS_PER_PAGE)
     if page not in range(1, pages + 1):
         return await ctx.send("Invalid page number")
     
     embed = discord.Embed(title=f"Available songs (page {page} of {pages})", colour=0xb022cb)
     embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
 
-    for song in bot.songs[(page - 1) * 25 : page * 25]:
+    for song in bot.songs[(page - 1) * bot.SONGS_PER_PAGE : page * bot.SONGS_PER_PAGE]:
         embed.add_field(name=f"{song['id']}: {song['title']} by {song['artist']}", value=song['url'], inline=False)
 
     await ctx.send(embed=embed)

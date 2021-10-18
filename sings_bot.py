@@ -207,6 +207,15 @@ async def on_message(message):
             # next_line - 1 cause list zero-indexing
             bot.current_line = bot.song_data['lyrics'].split("\n")[bot.next_line - 1]
 
+        # Delete messages from BlueDreams that contain emojis
+        if message.author.id == 815052445888806912 and (re.search(RE_UNICODE_EMOJI, message.content) or
+                re.search(RE_CUSTOM_EMOJI, message.content)):
+            await message.delete()
+            bot.mistakes += 1
+            # mistake_embed = discord.Embed(colour=0xbd1800)
+            # mistake_embed.add_field(name="Mistake", value=f"{message.author} said '{message.content}'")
+            # return await message.author.send(embed=mistake_embed)
+
         # Remove custom and Unicode emojis
         inputted_line = re.sub(RE_UNICODE_EMOJI, r'', message.content)
         inputted_line = re.sub(RE_CUSTOM_EMOJI, r'', inputted_line)
@@ -215,7 +224,7 @@ async def on_message(message):
         if not inputted_line:
             return
 
-        # Allow minor errors or differences (80% similarity required) and delete incorrect messages
+        # Allow minor errors or differences (80% similarity required) and delete incorrect messages 
         if ratio(inputted_line.lower(), bot.current_line.lower()) >= 0.8:
             bot.next_line += 1
 
@@ -240,9 +249,9 @@ async def on_message(message):
         else:
             await message.delete()
             bot.mistakes += 1
-            mistake_embed = discord.Embed(colour=0xbd1800)
-            mistake_embed.add_field(name="Mistake", value=f"{message.author} said '{message.content}'")
-            return await message.author.send(embed=mistake_embed)
+            # mistake_embed = discord.Embed(colour=0xbd1800)
+            # mistake_embed.add_field(name="Mistake", value=f"{message.author} said '{message.content}'")
+            # return await message.author.send(embed=mistake_embed)
             
     await bot.process_commands(message)
 

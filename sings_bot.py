@@ -77,11 +77,11 @@ async def on_ready():
     guild = bot.get_guild(int(os.environ.get("GUILD")))
     bot.ALLOWED_MEMBERS = guild.get_role(bot.ALLOWED_ROLE_IDS[0]).members + guild.get_role(bot.ALLOWED_ROLE_IDS[1]).members
     
-    print("We have logged in as jego lohnathan")
+    print("logdin")
 
 @bot.command()
 async def help(ctx):
-    embed = discord.Embed(title="Jego Lohnathan Help", colour=0xb022cb)
+    embed = discord.Embed(title="Sings Bot Help", colour=0xb022cb)
     allowed_role = ctx.guild.get_role(bot.ALLOWED_ROLE_IDS[0])
     allowed_role_1 = ctx.guild.get_role(bot.ALLOWED_ROLE_IDS[1])
 
@@ -118,9 +118,9 @@ async def start_sings(song=None):
     song_title = bot.song_data['title']
     song_artist = bot.song_data['artist']
 
-    lyrics_embed = discord.Embed(title="__Now starting practice sings!__", colour=0xb022cb)
+    lyrics_embed = discord.Embed(title="❄️ __Now starting practice sings!__ ❄️", colour=0x97c9ff)
     lyrics_embed.add_field(name=song_title, value=f"By {song_artist}")
-    info_embed = discord.Embed(title=f"__New practice sings started!__", colour=0xb022cb)
+    info_embed = discord.Embed(title=f"❄️ __New practice sings started!__ ❄️", colour=0x00cc13)
     info_embed.add_field(name=song_title, value=f"By {song_artist}")
 
     await bot.SINGS_CHANNEL.send(embed=info_embed)
@@ -129,15 +129,15 @@ async def start_sings(song=None):
     lyrics_list = list(more_itertools.split_when(bot.song_data['lyrics'], lambda x, y: x == y == "\n"))
     lyrics_list = ["".join(line) for line in lyrics_list]
 
-    next_line_embed = discord.Embed(title=song_title, colour=0x0f5fbc)
-    next_line_embed.add_field(name="Next line", value=bot.song_data['lyrics'].split("\n")[0])
+    next_line_embed = discord.Embed(title=song_title, colour=0x97c9ff)
+    next_line_embed.add_field(name="❄️ Next line ❄️", value=bot.song_data['lyrics'].split("\n")[0])
 
     def is_me(message):
         return message.author == bot.user
     await bot.LYRICS_CHANNEL.purge(check=is_me)
 
     await bot.LYRICS_CHANNEL.send(embed=lyrics_embed)
-    await bot.LYRICS_CHANNEL.send(f"**__Lyrics__**:\n** **")
+    await bot.LYRICS_CHANNEL.send(f"❄️ **__Lyrics__**: ❄️\n** **")
 
     for lines in lyrics_list:
         await bot.LYRICS_CHANNEL.send(f"** **{lines}")
@@ -148,7 +148,7 @@ async def start_sings(song=None):
 @bot.command()
 async def start(ctx, song=None):
     if ctx.message.author not in bot.ALLOWED_MEMBERS:
-        return await ctx.send("Sorry, but you don't have permission to start practice sings.")
+        return
     
     if bot.started:
         return
@@ -177,7 +177,7 @@ async def list_songs(ctx, page=1):
     if page not in range(1, pages + 1):
         return await ctx.send("Invalid page number")
     
-    embed = discord.Embed(title=f"Available songs (page {page} of {pages})", colour=0xb022cb)
+    embed = discord.Embed(title=f"❄️ Available songs (page {page} of {pages}) ❄️", colour=0x97c9ff)
     embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
 
     for song in bot.songs[(page - 1) * bot.SONGS_PER_PAGE : page * bot.SONGS_PER_PAGE]:
@@ -235,12 +235,12 @@ async def on_message(message):
                     bot.next_line += 1
                     bot.current_line = bot.song_data['lyrics'].split("\n")[bot.next_line - 1]
                     
-                next_line_embed = discord.Embed(title=bot.song_data['title'], colour=0x0f5fbc)
-                next_line_embed.add_field(name="Next line", value=bot.current_line)
+                next_line_embed = discord.Embed(title=bot.song_data['title'], colour=0x97c9ff)
+                next_line_embed.add_field(name="❄️ Next line ❄️", value=bot.current_line)
                 await bot.next_line_message.edit(embed=next_line_embed)
                 
             except IndexError:
-                embed = discord.Embed(title="Song completed!", colour=0xb022cb)
+                embed = discord.Embed(title="❄️ Song completed! ❄️", colour=0xcc0000)
                 embed.add_field(name=f"{bot.song_data['artist']} - {bot.song_data['title']}",
                     value=f"We made {bot.mistakes} mistakes.")
                 await bot.SINGS_CHANNEL.send(embed=embed)

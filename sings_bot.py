@@ -120,7 +120,7 @@ async def start_sings(song=None):
 
     lyrics_embed = discord.Embed(title="❄️ __Now starting practice sings!__ ❄️", colour=0x97c9ff)
     lyrics_embed.add_field(name=song_title, value=f"By {song_artist}")
-    info_embed = discord.Embed(title=f"❄️ __New practice sings started!__ ❄️", colour=0x00cc13)
+    info_embed = discord.Embed(title=f"❄️ __New practice sings started!__ ❄️", colour=0x966fff)
     info_embed.add_field(name=song_title, value=f"By {song_artist}")
 
     await bot.SINGS_CHANNEL.send(embed=info_embed)
@@ -166,7 +166,7 @@ async def stop(ctx):
         return message.author == bot.user
     await bot.LYRICS_CHANNEL.purge(check=is_me)
 
-    embed = discord.Embed(title="Stopped practice sings", colour=0xbd1800)
+    embed = discord.Embed(title="Stopped practice sings", colour=0xbdbd1800)
     embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
     await ctx.send(embed=embed)
     bot.started = False
@@ -240,9 +240,9 @@ async def on_message(message):
                 await bot.next_line_message.edit(embed=next_line_embed)
                 
             except IndexError:
-                embed = discord.Embed(title="❄️ Song completed! ❄️", colour=0xcc0000)
+                embed = discord.Embed(title="❄️ Song completed! ❄️", colour=0x966fff)
                 embed.add_field(name=f"{bot.song_data['artist']} - {bot.song_data['title']}",
-                    value=f"We made {bot.mistakes} mistakes.")
+                    value=f"We made {bot.mistakes} mistake{'' if bot.mistakes == 1 else 's'}.")
                 await bot.SINGS_CHANNEL.send(embed=embed)
                 await start_sings()
 

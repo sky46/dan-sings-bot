@@ -11,7 +11,6 @@ from math import ceil
 from dotenv import load_dotenv
 import random
 import json
-import typing
 import re
 import more_itertools
 import asyncio
@@ -26,8 +25,8 @@ with open("songs.json", 'r') as read_file:
     SONGS_COUNT = len(data['songs'])
     bot.songs = data['songs']
 
-# Role that's allowed to start practice sings
-bot.ALLOWED_ROLE_IDS = [int(os.environ.get("ALLOWED_ROLE")), int(os.environ.get("ALLOWED_ROLE_1"))]
+# Roles that are allowed to start practice sings
+bot.ALLOWED_ROLE_IDS = [int(x) for x in os.environ.get("ALLOWED_ROLES").split(",")]
 
 bot.song_id = 0
 bot.started = False
@@ -75,26 +74,29 @@ async def on_ready():
     
     # Roles allowed to start/stop signs
     guild = bot.get_guild(int(os.environ.get("GUILD")))
-    bot.ALLOWED_MEMBERS = guild.get_role(bot.ALLOWED_ROLE_IDS[0]).members + guild.get_role(bot.ALLOWED_ROLE_IDS[1]).members
+    bot.ALLOWED_MEMBERS = []
+    for id in bot.ALLOWED_ROLE_IDS:
+        bot.ALLOWED_MEMBERS += guild.get_role(id).members
+    print(bot.ALLOWED_MEMBERS)
     
     print("logdin")
+    await bot.SINGS_CHANNEL.send("started")
 
 @bot.command()
 async def help(ctx):
     embed = discord.Embed(title="Sings Bot Help", colour=0xb022cb)
-    allowed_role = ctx.guild.get_role(bot.ALLOWED_ROLE_IDS[0])
-    allowed_role_1 = ctx.guild.get_role(bot.ALLOWED_ROLE_IDS[1])
 
-    embed.add_field(name=f"** **\nTo start a practice sings, use `?start [song id]`! You must have the `{allowed_role.name}` or {allowed_role_1.name} role.",
+    embed.add_field(name=f"** **\nTo start a practice sings, use `?start [song id]`! You must have a moderation role.",
         value="If no `song id` is provided, it will pick a random song.", inline=False)
     embed.add_field(name=f"** **\nOnce a song is started, get the next line from {bot.SINGS_CHANNEL.name}!",
         value="Minor typos and emoji are allowed.", inline=False)
     embed.add_field(name="When a song finishes, it'll randomly choose another song to start.",
-        value=f"Use `?stop` to stop the practice sings (you must have the {allowed_role.name} or {allowed_role_1.name} role).")
+        value=f"Use `?stop` to stop the practice sings (you must have a moderation role).")
     embed.add_field(name="** **", value="Bot by skytheguy#3630 for Mr Dan Discord Sings server", inline=False)
     await ctx.send(embed=embed)
 
-async def start_sings(song=None):
+async def start_sings(song=None):   
+    bot.started = True
     bot.next_line = None
     bot.mistakes = 0
 
@@ -124,7 +126,6 @@ async def start_sings(song=None):
     info_embed.add_field(name=song_title, value=f"By {song_artist}")
 
     await bot.SINGS_CHANNEL.send(embed=info_embed)
-    bot.started = True
 
     lyrics_list = list(more_itertools.split_when(bot.song_data['lyrics'], lambda x, y: x == y == "\n"))
     lyrics_list = ["".join(line) for line in lyrics_list]
@@ -166,7 +167,7 @@ async def stop(ctx):
         return message.author == bot.user
     await bot.LYRICS_CHANNEL.purge(check=is_me)
 
-    embed = discord.Embed(title="Stopped practice sings", colour=0xbdbd1800)
+    embed = discord.Embed(title="Stopped practice sings", colour=0xbd1800)
     embed.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
     await ctx.send(embed=embed)
     bot.started = False
@@ -185,6 +186,11 @@ async def list_songs(ctx, page=1):
 
     await ctx.send(embed=embed)
     await ctx.send("Use `?start [song number]` to start a practice sings!\ne.g. `?start 3` for The Duck Song.")
+
+@bot.command()
+async def reset(ctx):
+    if ctx.message.author in bot.ALLOWED_MEMBERS:
+        await bot.close()
 
 @bot.event
 async def on_message(message):
